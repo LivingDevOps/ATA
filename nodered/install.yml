@@ -1,0 +1,8 @@
+---
+
+- name: ATA Raspberry
+  hosts: all
+  roles: 
+    - docker
+  become: yes
+

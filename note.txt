@@ -1,0 +1,6 @@
+
+Find the right Hue IDs:
+
+Open: http://192.168.200.20/debug/clip.html
+GET: /api/UGyRDA5PHtmtGzoypdDcdKQsVIdi4yD2S3h7bF5P/lights
+GET: /api/UGyRDA5PHtmtGzoypdDcdKQsVIdi4yD2S3h7bF5P/sensors

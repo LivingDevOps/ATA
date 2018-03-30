@@ -1,0 +1,50 @@
+---
+
+- name: Install required packages
+  apt: name={{ item }} update_cache=yes state=installed force=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - python-pip
+
+- name: ensure repository key is installed
+  apt_key:
+    url: https://download.docker.com/linux/raspbian/gpg
+    state: present
+
+- name: ensure docker registry is available
+  apt_repository:
+    repo: deb [arch=armhf] https://download.docker.com/linux/raspbian stretch edge
+    state: present
+    update_cache: yes
+
+- name: ensure docker and dependencies are installed
+  apt: 
+    name: docker-ce 
+    update_cache: yes
+
+- name: Installing packages
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=present"
+  with_items:
+    - python-setuptools
+
+- name: Installing dependencies
+  easy_install:
+    name: pip
+
+- name: Installing docker compose
+  pip:
+    name: docker-compose
+    state: present
+
+- name: Ensure docker daemon options used (systemd)
+  lineinfile:
+    backrefs: yes
+    dest: /lib/systemd/system/docker.service
+    regexp: '^ExecStart='
+    line: ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:4243 --api-cors-header="*" --insecure-registry adoplight.local:5000
+  notify: 
+    - Reload systemd
+    - Restart docker
+
+- meta: flush_handlers
