@@ -57,6 +57,15 @@ pipeline {
       }
     }
 
+    stage('Set Build Informations') {
+      steps {
+        script {
+          currentBuild.description = "<a href=\"http://192.168.0.100:9000\" target=\"_blank\" >Productive App</a>"
+        }
+      }
+    }  
+
+
   }
 
    post { 
