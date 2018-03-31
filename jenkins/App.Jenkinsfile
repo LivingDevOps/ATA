@@ -59,14 +59,14 @@ pipeline {
               sh "docker rm -f demoapp"
             }
         }
-        success { 
+//        success { 
 //          sh 'curl http://adoplight.local:1880/jenkins/success'
-        }
-        unstable { 
+//        }
+//        unstable { 
 //          sh 'curl http://adoplight.local:1880/jenkins/failed'
-        }
-        failure { 
+//        }
+//        failure { 
 //          sh 'curl http://adoplight.local:1880/jenkins/failed'
-        }
+//        }
     }
 }
