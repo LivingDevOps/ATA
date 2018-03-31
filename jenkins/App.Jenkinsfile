@@ -54,7 +54,7 @@ pipeline {
           try {
             sh "docker rm -f prodApp"
           }
-          finaly {
+          finally {
             sh "docker run --name prodApp -d -p 9000:80 demoapp"
           }
         }
