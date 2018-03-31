@@ -28,7 +28,9 @@ pipeline {
 
     stage("Build Container") {
       steps {
-        sh "docker build -t demoapp ."
+        dir("./app"){
+          sh "docker build -t demoapp ."
+        }
       }
     }
 
@@ -40,7 +42,9 @@ pipeline {
 
     stage("Test") {
       steps {
+        dir("./app"){
           sh "node test"
+        }
       }
     }
 
