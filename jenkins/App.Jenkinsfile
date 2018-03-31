@@ -19,7 +19,9 @@ pipeline {
         script {
           currentBuild.displayName = "App-Deploy.${BuildName}"
           def cause = currentBuild.rawBuild.getCause(hudson.model.Cause$RemoteCause)
-          env.TriggerReason = cause.note
+          if(cause != null){
+            env.TriggerReason = cause.note
+          }
         }
       }
     }  
