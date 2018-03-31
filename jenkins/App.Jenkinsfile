@@ -60,13 +60,13 @@ pipeline {
             }
         }
         success { 
-          sh 'curl http://adoplight.local:1880/jenkins/success'
+//          sh 'curl http://adoplight.local:1880/jenkins/success'
         }
         unstable { 
-          sh 'curl http://adoplight.local:1880/jenkins/failed'
+//          sh 'curl http://adoplight.local:1880/jenkins/failed'
         }
         failure { 
-          sh 'curl http://adoplight.local:1880/jenkins/failed'
+//          sh 'curl http://adoplight.local:1880/jenkins/failed'
         }
     }
 }
