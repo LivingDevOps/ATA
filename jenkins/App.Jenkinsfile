@@ -36,15 +36,30 @@ pipeline {
 
     stage("Run app") {
       steps {
-        sh "docker run --name demoapp -d -p 9000:80 demoapp"
+        sh "docker run --name testApp -d demoapp"
       }
     }
 
     stage("Test") {
       steps {
         dir("./app"){
-          sh "docker exec demoapp npm test"
+          sh "docker exec testApp npm test"
         }
+      }
+    }
+
+    stage("TearDown Test Environment") {
+      steps {
+        sh "docker rm -f testApp"
+      }
+    }
+
+    stage("Deploy App") {
+      steps {
+        catchError {
+          sh "docker rm -f prodApp"
+        }
+        sh "docker run --name prodApp -d -p 9000:80 demoapp"
       }
     }
 
@@ -54,7 +69,7 @@ pipeline {
        always { 
             echo 'Cleanup'
             catchError {
-              sh "docker rm -f demoapp"
+              sh "docker rm -f testApp"
             }
         }
 //        success { 
