@@ -43,7 +43,7 @@ pipeline {
     stage("Test") {
       steps {
         dir("./app"){
-          sh "docker exec -it demoapp npm test"
+          sh "docker exec demoapp npm test"
         }
       }
     }
