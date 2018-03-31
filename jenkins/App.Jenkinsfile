@@ -50,8 +50,10 @@ pipeline {
 
     stage("Deploy App") {
       steps {
-        catchError {
-          sh "docker rm -f prodApp"
+        script {
+          try {
+            sh "docker rm -f prodApp"
+          }
         }
         sh "docker run --name prodApp -d -p 9000:80 demoapp"
       }
@@ -61,8 +63,10 @@ pipeline {
 
    post { 
        always { 
-            catchError {
-              sh "docker rm -f testApp"
+            script {
+              try{
+                sh "docker rm -f testApp"
+              }
             }
         }
         success { 
