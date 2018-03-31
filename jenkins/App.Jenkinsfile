@@ -48,12 +48,6 @@ pipeline {
       }
     }
 
-    stage("TearDown Test Environment") {
-      steps {
-        sh "docker rm -f testApp"
-      }
-    }
-
     stage("Deploy App") {
       steps {
         catchError {
