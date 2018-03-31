@@ -36,7 +36,7 @@ pipeline {
 
     stage("Run app") {
       steps {
-        sh "docker run --name demoapp -p 9000:80 demoapp"
+        sh "docker run --name demoapp -d -p 9000:80 demoapp"
       }
     }
 
@@ -48,8 +48,17 @@ pipeline {
       }
     }
 
+
+
+
   }
    post { 
+       always { 
+            echo 'Cleanup'
+            catchError {
+              sh "docker rm -f demoapp"
+            }
+        }
         success { 
           sh 'curl http://adoplight.local:1880/jenkins/success'
         }
