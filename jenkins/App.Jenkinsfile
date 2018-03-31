@@ -69,8 +69,8 @@ pipeline {
               try {
                 sh "docker rm -f testApp"
               }
-              catch {
-                echo "No container"
+              catch(err) {
+                echo "No containerupda"
               }
             }
         }
