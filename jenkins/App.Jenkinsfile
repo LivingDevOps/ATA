@@ -54,8 +54,10 @@ pipeline {
           try {
             sh "docker rm -f prodApp"
           }
+          finaly {
+            sh "docker run --name prodApp -d -p 9000:80 demoapp"
+          }
         }
-        sh "docker run --name prodApp -d -p 9000:80 demoapp"
       }
     }
 
@@ -64,8 +66,11 @@ pipeline {
    post { 
        always { 
             script {
-              try{
+              try {
                 sh "docker rm -f testApp"
+              }
+              catch {
+                echo "No container"
               }
             }
         }
