@@ -43,12 +43,13 @@ pipeline {
     stage("Test") {
       steps {
         dir("./app"){
-          sh "npm test"
+          sh "docker exec -it demoapp npm test"
         }
       }
     }
 
   }
+
    post { 
        always { 
             echo 'Cleanup'
