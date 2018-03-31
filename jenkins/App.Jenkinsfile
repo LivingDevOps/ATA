@@ -57,27 +57,20 @@ pipeline {
       }
     }
 
-    stage('Set Build Informations 2') {
-      steps {
-        script {
-          currentBuild.description = "<a href=\"http://192.168.0.100:9000\" target=\"_blank\" >Productive App</a>"
-        }
-      }
-    }  
-
-
   }
 
    post { 
        always { 
-            echo 'Cleanup'
             catchError {
               sh "docker rm -f testApp"
             }
         }
-//        success { 
+        success { 
+          script {
+            currentBuild.description = "<a href=\"http://192.168.0.100:9000\" target=\"_blank\" >Productive App</a>"
+          }
 //          sh 'curl http://adoplight.local:1880/jenkins/success'
-//        }
+        }
 //        unstable { 
 //          sh 'curl http://adoplight.local:1880/jenkins/failed'
 //        }
