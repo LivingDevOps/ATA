@@ -54,6 +54,9 @@ pipeline {
           try {
             sh "docker rm -f prodApp"
           }
+          catch(err) {
+            echo "No container"
+          }
           finally {
             sh "docker run --name prodApp -d -p 9000:80 demoapp"
           }
@@ -70,7 +73,7 @@ pipeline {
                 sh "docker rm -f testApp"
               }
               catch(err) {
-                echo "No containerupda"
+                echo "No container"
               }
             }
         }
