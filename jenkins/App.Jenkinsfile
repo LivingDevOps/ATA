@@ -29,21 +29,21 @@ pipeline {
     stage("Build Container") {
       steps {
         dir("./app"){
-          sh "docker build -t demoapp ."
+          echo "command to build app"
         }
       }
     }
 
     stage("Run app") {
       steps {
-        sh "docker run --name testApp -d demoapp"
+          echo "command to run app"
       }
     }
 
     stage("Test") {
       steps {
         dir("./app"){
-          sh "docker exec testApp npm test"
+          echo "command to test app"
         }
       }
     }
@@ -52,13 +52,13 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker rm -f prodApp"
+            echo "command to deploy app"
           }
           catch(err) {
-            echo "No container"
+            echo "command to deploy app"
           }
           finally {
-            sh "docker run --name prodApp -d -p 9000:80 demoapp"
+            echo "command to deploy app"
           }
         }
       }
@@ -70,24 +70,21 @@ pipeline {
        always { 
             script {
               try {
-                sh "docker rm -f testApp"
+                echo "command to cleanup"
               }
               catch(err) {
-                echo "No container"
+                echo "command to cleanup"
               }
             }
         }
         success { 
-          script {
-            currentBuild.description = "<a href=\"http://192.168.0.100:9000\" target=\"_blank\" >Productive App</a>"
-          }
-//          sh 'curl http://adoplight.local:1880/jenkins/success'
+          echo "command to enable lights"
         }
-//        unstable { 
-//          sh 'curl http://adoplight.local:1880/jenkins/failed'
-//        }
-//        failure { 
-//          sh 'curl http://adoplight.local:1880/jenkins/failed'
-//        }
+        unstable { 
+          echo "command to enable lights"
+        }
+        failure { 
+          echo "command to enable lights"
+        }
     }
 }
