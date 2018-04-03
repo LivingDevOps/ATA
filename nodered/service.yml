@@ -4,7 +4,7 @@
   hosts: all
   become: yes
   vars:
-    folder: "/tmp/adoplight/ata"
+    folder: "/var/adoplight/ata"
 
   tasks:
     - name: set docker-compose
@@ -51,7 +51,7 @@
     - name: build docker image
       command: docker build -t noderedata:latest .
       args:
-        chdir: /tmp/adoplight/ata/image/
+        chdir: /var/adoplight/ata/image/
           
     - name: "Set Container to {{ state }}"
       docker_service:
