@@ -18,40 +18,38 @@ pipeline {
       steps {
         script {
           currentBuild.displayName = "App-Deploy.${BuildName}"
-          def cause = currentBuild.rawBuild.getCause(hudson.model.Cause$RemoteCause)
-          env.TriggerReason = cause.note
         }
       }
     }  
 
     stage("Build Container") {
       steps {
-        sh "docker build -t demoapp ."
+        echo "Command to build container with app"
       }
     }
 
     stage("Run app") {
       steps {
-        sh "docker run --name demoapp -p 9000:80 demoapp"
+        echo "Command to run application"
       }
     }
 
     stage("Test") {
       steps {
-          sh "node test"
+          echo "command to test application"
       }
     }
 
   }
    post { 
         success { 
-          sh 'curl http://adoplight.local:1880/jenkins/success'
+          echo 'command to switch light on'
         }
         unstable { 
-          sh 'curl http://adoplight.local:1880/jenkins/failed'
+          echo 'command to switch light on'
         }
         failure { 
-          sh 'curl http://adoplight.local:1880/jenkins/failed'
+          echo 'command to switch light on'
         }
     }
 }
