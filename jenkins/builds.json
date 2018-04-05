@@ -1,15 +1,17 @@
-[
+{ 
+    "Create_Environment":
     {
-	    "Name": "Create_Environment",
         "Script": "./jenkins/Environment.Create.Jenkinsfile"
     },
+    
+    "Destroy_Environment":
     {
-    	"Name": "Destroy_Environment",
         "Script": "./jenkins/Environment.Destroy.Jenkinsfile"
     },
+    
+    "Build_Application":
     {
-	    "Name": "Build_Application",
         "Script": "./jenkins/App.Jenkinsfile",
         "Token": "ATA.Token"
     }
-]
+}
