@@ -11,7 +11,7 @@ pipeline {
 
   environment {
     BuildName = "ATA.${BUILD_NUMBER}"
-    HueBridgeIp = "192.168.200.20"
+    HueBridgeIp = "192.168.200.22"
     HueDimmerId = "4"
     HueLightId = "1"
   }
