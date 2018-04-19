@@ -31,6 +31,8 @@ pipeline {
     stage("Stop Service") {
       steps {
         sh "ansible-playbook nodered/service.yml -vv state=absent"
+        sh "ansible-playbook nodered/service.yml -vv --e \"state=absent\""
+
 
       }
     }
