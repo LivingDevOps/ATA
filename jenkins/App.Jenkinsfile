@@ -83,11 +83,9 @@ pipeline {
           }
 //          sh 'curl http://adoplight.local:1880/jenkins/success'
         }
-//        unstable { 
-//          sh 'curl http://adoplight.local:1880/jenkins/failed'
-//        }
-//        failure { 
-//          sh 'curl http://adoplight.local:1880/jenkins/failed'
-//        }
+//      unstable { 
+//      }
+//      failure { 
+//      }
     }
 }
