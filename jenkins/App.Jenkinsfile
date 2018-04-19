@@ -83,9 +83,9 @@ pipeline {
           }
 //          sh 'curl http://adoplight.local:1880/jenkins/success'
         }
-//      unstable { 
-//      }
-//      failure { 
-//      }
+//        unstable { 
+//        }
+//        failure { 
+//        }
     }
 }
