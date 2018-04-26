@@ -12,7 +12,7 @@
     "Build_Application":
     {
         "Script": "./jenkins/App.Jenkinsfile",
-        "Token": "ATA.Token"
+        "Token": "ATA.Token",
         "TriggerOnPush" : true
     }
 }
