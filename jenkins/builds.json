@@ -13,5 +13,6 @@
     {
         "Script": "./jenkins/App.Jenkinsfile",
         "Token": "ATA.Token"
+        "TriggerOnPush" : true
     }
 }
