@@ -1,17 +1,17 @@
 { 
     "Create_Environment":
     {
-        "Script": "./jenkins/Environment.Create.Jenkinsfile"
+        "Script": "./build/Environment.Create.Jenkinsfile"
     },
     
     "Destroy_Environment":
     {
-        "Script": "./jenkins/Environment.Destroy.Jenkinsfile"
+        "Script": "./build/Environment.Destroy.Jenkinsfile"
     },
     
     "Build_Application":
     {
-        "Script": "./jenkins/App.Jenkinsfile",
+        "Script": "./build/App.Jenkinsfile",
         "Token": "ATA.Token",
         "TriggerOnPush" : true
     }
